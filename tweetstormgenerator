@@ -1,15 +1,17 @@
 #!/usr/bin/env ruby
 
+# frozen_string_literal: true
+
 require_relative 'tweet_storm_generator'
 
 text_to_convert = ARGV.first
 
 if text_to_convert.nil?
-  STDOUT.puts('Usage: tweet_storm_generator <text>')
+  $stdout.puts('Usage: tweet_storm_generator <text>')
 
   exit(1)
 end
 
 storm = TweetStorms::Generate.call(text_to_convert)
 
-STDOUT.puts(storm.to_thread_string)
+$stdout.puts(storm.to_thread_string)

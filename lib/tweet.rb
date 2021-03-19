@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Tweet
-  MAX_SIZE = 140.freeze
+  MAX_SIZE = 140
 
   attr_reader :text
 
   def initialize(text)
     @text = text
 
-    raise TweetTooBig.new(text) unless size <= MAX_SIZE
+    raise TweetTooBig, text unless size <= MAX_SIZE
   end
 
   def to_s
@@ -16,7 +16,7 @@ class Tweet
   end
 
   def to_thread_string
-    each_line.map { |line| '| ' + line }.join("\n")
+    each_line.map { |line| "| #{line}" }.join("\n")
   end
 
   private
