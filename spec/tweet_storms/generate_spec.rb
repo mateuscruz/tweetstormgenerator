@@ -48,16 +48,16 @@ describe TweetStorms::Generate do
 
     context 'when input is bigger than Tweet::MAX_SIZE' do
       before do
-        stub_const('Tweet::MAX_SIZE', 20)
+        stub_const('Tweet::MAX_SIZE', 25)
       end
 
-      it 'returns a tweet storm with multiple tweets' do
+      it 'returns a tweet storm with multiple tweets without breaking words' do
         expect(subject.size).to eq(2)
         expect(subject.to_thread_string).to eq <<~TEXT
-          | Sustainalytics i 1/2
+          | Sustainalytics is 1/2
           |
           |
-          | s the coolest! 2/2
+          | the coolest! 2/2
         TEXT
       end
     end

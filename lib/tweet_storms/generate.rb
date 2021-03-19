@@ -35,15 +35,20 @@ module TweetStorms
     end
 
     def chunks
-      tweets_without_counters = chars.each_slice(Tweet::MAX_SIZE).map(&:join)
+      tweets_without_counters = twitter_sequence_for(Tweet::MAX_SIZE)
+      max_size                = tweets_without_counters.map(&:size).max
       size                    = tweets_without_counters.size
       suffix                  = SUFFIX_BUILDER.call(size, size)
 
-      chars.each_slice(Tweet::MAX_SIZE - suffix.size).map(&:join)
+      twitter_sequence_for(max_size - suffix.size)
     end
 
-    def chars
-      input.chars
+    def twitter_sequence_for(limit)
+      SplitWords.new(words: words, limit: limit).call
+    end
+
+    def words
+      input.split(/\s+/)
     end
   end
 end
