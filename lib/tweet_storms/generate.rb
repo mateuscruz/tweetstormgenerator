@@ -34,10 +34,6 @@ module TweetStorms
       input.size <= Tweet::MAX_SIZE
     end
 
-    def chunks_size
-      chunks.size
-    end
-
     def chunks
       tweets_without_counters = chars.each_slice(Tweet::MAX_SIZE).map(&:join)
       size                    = tweets_without_counters.size
