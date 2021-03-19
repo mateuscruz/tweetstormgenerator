@@ -11,11 +11,21 @@ class Tweet
     raise TweetTooBig.new(text) unless size <= MAX_SIZE
   end
 
+  def to_s
+    text.to_s
+  end
+
+  def to_thread_string
+    each_line.map { |line| '| ' + line }.join("\n")
+  end
+
+  private
+
   def size
     text.size
   end
 
-  def to_s
-    text.to_s
+  def each_line
+    text.each_line
   end
 end

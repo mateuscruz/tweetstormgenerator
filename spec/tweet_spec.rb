@@ -48,11 +48,20 @@ RSpec.describe Tweet do
     end
   end
 
-  describe '#size' do
-    subject { described_class.new('Sustainalytics is the coolest!').size }
 
-    it 'returns the stored text size' do
-      is_expected.to eq(30)
+  describe '#.to_s' do
+    subject { described_class.new('Sustainalytics is the coolest!').to_s }
+
+    it 'returns stored text' do
+      is_expected.to eq('Sustainalytics is the coolest!')
+    end
+  end
+
+  describe '#to_thread_string' do
+    subject { described_class.new('Sustainalytics is the coolest!').to_thread_string }
+
+    it 'returns a human readable twitter text' do
+      is_expected.to eq('| Sustainalytics is the coolest!')
     end
   end
 end
