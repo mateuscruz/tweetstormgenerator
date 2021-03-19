@@ -9,7 +9,7 @@ describe 'tweetstormgenerator' do
     let(:input) { nil }
 
     it 'fails' do
-      is_expected.to eq("Usage: tweet_storm_generator <text>\n")
+      is_expected.to eq("Usage: tweetstormgenerator <text>\n")
     end
   end
 

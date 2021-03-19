@@ -7,7 +7,7 @@ require_relative 'tweet_storm_generator'
 text_to_convert = ARGV.first
 
 if text_to_convert.nil?
-  $stdout.puts('Usage: tweet_storm_generator <text>')
+  $stdout.puts('Usage: tweetstormgenerator <text>')
 
   exit(1)
 end
