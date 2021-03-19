@@ -2,6 +2,8 @@ Tweet storm generator
 ====
 
 ![CircleCI](https://circleci.com/gh/mateuscruz/tweetstormgenerator.svg?style=svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/3a5a2c1b4813a70f6827/maintainability)](https://codeclimate.com/github/mateuscruz/tweetstormgenerator/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/3a5a2c1b4813a70f6827/test_coverage)](https://codeclimate.com/github/mateuscruz/tweetstormgenerator/test_coverage)
 
 Dependencies
 ------------
