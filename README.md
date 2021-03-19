@@ -1,6 +1,8 @@
 Tweet storm generator
 ====
 
+![CircleCI](https://circleci.com/gh/mateuscruz/tweetstormgenerator.svg?style=svg)
+
 Dependencies
 ------------
 
