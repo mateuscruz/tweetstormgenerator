@@ -11,6 +11,8 @@ class TweetStorm
   end
 
   def to_thread_string
+    return tweets.first.to_thread_string if size == 1
+
     thread_strings = tweets.each.with_index.map do |tweet, index|
       tweet.to_thread_string + "#{TweetStorms::SUFFIX_BUILDER.call(index, size)}\n"
     end
@@ -18,11 +20,11 @@ class TweetStorm
     thread_strings.join(THREAD_SEPARATOR)
   end
 
-  private
-
-  attr_reader :tweets
-
   def size
     tweets.size
   end
+
+  private
+
+  attr_reader :tweets
 end
