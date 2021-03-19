@@ -12,6 +12,12 @@ if text_to_convert.nil?
   exit(1)
 end
 
-storm = TweetStorms::Generate.call(text_to_convert)
+begin
+  storm = TweetStorms::Generate.call(text_to_convert)
 
-$stdout.puts(storm.to_thread_string)
+  $stdout.puts(storm.to_thread_string)
+rescue WordTooBig => error
+  $stdout.puts("Error: #{error.message}")
+
+  exit(1)
+end

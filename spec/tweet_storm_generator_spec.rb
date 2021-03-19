@@ -13,6 +13,14 @@ describe 'tweetstormgenerator' do
     end
   end
 
+  context 'when input has a word that is bigger than max size' do
+    let(:input) { 'a' * (Tweet::MAX_SIZE + 1) }
+
+    it 'fails' do
+      is_expected.to eq("Error: The word \"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\" is bigger than the max word size of 140.\n")
+    end
+  end
+
   context 'when input is given' do
     let(:input) { 'Sustainalytics_is_the_coolest!' }
 
