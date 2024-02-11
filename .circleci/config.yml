@@ -1,32 +1,36 @@
 version: 2.1
-orbs:
-  ruby: circleci/ruby@0.1.2
-
 jobs:
   build:
     docker:
-      - image: circleci/ruby:2.6.5-stretch-node
-    executor: ruby/default
+      - image: cimg/ruby:3.2.2-browsers
+
+    working_directory: ~/repo
+
     steps:
       - checkout
       - run:
           name: Setup Environment Variables
           command: |
             echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+
       - run:
           name: Configure Bundler
           command: |
             gem install bundler
+
       - run:
-          name: Which bundler?
-          command: bundle -v
-      - ruby/bundle-install
+          name: install dependencies
+          command: |
+            bundle install --jobs=4 --retry=3 --path vendor/bundle
+
       - save_cache:
           paths:
             - ./vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
+
       - run:
-          name:  Download cc-test-reporter
+          name: Download cc-test-reporter
           command: |
             curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
             chmod +x ./cc-test-reporter
